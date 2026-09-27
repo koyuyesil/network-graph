@@ -1,1 +1,24 @@
-<div id="root"></div><script type="module" src="/src/main.tsx"></script>
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>İlişki Haritası</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div><strong>İLİŞKİ HARİTASI</strong><small>Demo verisi · yalnızca tarayıcıda çalışır</small></div>
+    <div class="search-wrap"><input id="search" type="search" placeholder="Kişi, olay, kurum veya yer ara..." autocomplete="off"><div id="search-results" class="search-results"></div></div>
+    <div class="header-actions"><button id="export-btn">JSON dışa aktar</button><label class="button">JSON içe aktar<input id="import-input" type="file" accept="application/json" hidden></label><button id="new-btn" class="primary">+ Yeni</button></div>
+  </header>
+  <main class="layout">
+    <aside class="filters panel"><h2>FİLTRELER</h2><section><h3>Varlık türleri</h3><div id="type-filters"></div></section><section><h3>İlişki türleri</h3><div id="relation-filters"></div></section><section><h3>Tarih</h3><label>Başlangıç <input id="start-date" type="date"></label><label>Bitiş <input id="end-date" type="date"></label></section><button id="clear-filters">Filtreleri temizle</button></aside>
+    <section class="graph-panel panel"><div class="graph-head"><div><h1>İLİŞKİ GRAFİĞİ</h1><span id="graph-count"></span></div><div id="degree-controls" class="degree-controls" hidden><button data-degree="1">1. derece</button><button data-degree="2">2. derece</button><button data-degree="3">3. derece</button></div></div><div id="graph" aria-label="İlişki grafiği"><svg id="edges" aria-hidden="true"><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z"></path></marker></defs></svg><div id="nodes"></div><p class="graph-hint">Düğümleri sürükleyin. Bir düğümü seçerek ilişkilerini inceleyin.</p></div><section class="path-finder"><h2>BAĞLANTI ARA</h2><label>Başlangıç <select id="path-start"></select></label><label>Hedef <select id="path-end"></select></label><button id="find-path" class="primary">Bağlantıyı bul</button><p id="path-result" aria-live="polite"></p></section></section>
+    <aside id="details" class="details panel"><p>Bir kişi, olay veya ilişki seçin.</p></aside>
+  </main>
+  <footer class="timeline panel"><div><h2>ZAMAN ÇİZELGESİ</h2><p id="timeline-label">İlişkiler ve olaylar tarih sırasıyla gösterilir.</p></div><button id="play-btn">▶ Oynat</button><button id="pause-btn">⏸ Duraklat</button><div id="timeline-track" class="timeline-track"></div></footer>
+  <dialog id="entry-dialog"><form id="entry-form" method="dialog"><button type="button" class="dialog-close" id="dialog-close">×</button><h2>Yeni kayıt</h2><label>Kayıt türü<select id="entry-type"><option value="person">Kişi</option><option value="event">Olay</option><option value="organization">Kurum</option><option value="location">Yer</option><option value="source">Belge</option><option value="relationship">İlişki</option></select></label><div id="entry-fields"></div><button class="primary" type="submit">Kaydet</button></form></dialog>
+  <script src="script.js"></script>
+</body>
+</html>
